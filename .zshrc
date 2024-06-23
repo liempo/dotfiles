@@ -9,7 +9,6 @@ plugins=(git ssh-agent)
 
 # Automatically load ssh keys and configure custom git ssh command
 zstyle :omz:plugins:ssh-agent identities id_ed25519_personal id_ed25519_work
-export GIT_SSH_COMMAND="bash ~/.scripts/git_ssh_wrapper.sh"
 
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -27,19 +26,14 @@ prompt_context() {
   fi
 }
 
-# Activate environment on cd
+# Activate virtualenv if .venv exists on cd
 function cd() {
   builtin cd "$@"
-
   if [[ -z "$VIRTUAL_ENV" ]] ; then
-    ## If venv folder is found then activate the vitualenv
       if [[ -d ./.venv ]] ; then
         source ./.venv/bin/activate
       fi
   else
-    ## check the current folder belong to earlier VIRTUAL_ENV folder
-    # if yes then do nothing
-    # else deactivate
       parentdir="$(dirname "$VIRTUAL_ENV")"
       if [[ "$PWD"/ != "$parentdir"/* ]] ; then
         deactivate
@@ -50,7 +44,5 @@ function cd() {
 # Activate zoxide
 eval "$(zoxide init zsh)"
 
-# Dotfiles management
-alias dots='git --git-dir=$HOME/.dots/ --work-tree=$HOME'
-alias vim="nvim"
+#  Custom aliases
 alias swift-format-all="find . -name '*.swift' -exec swift-format -i {} \;"
