@@ -14,8 +14,14 @@ return {
     config = function()
       local lsp_zero = require('lsp-zero')
       local lspconfig = require('lspconfig')
-      lspconfig.denols.setup {}
-      lspconfig.tsserver.setup {}
+      local cmp = require('cmp')
+      lspconfig.denols.setup {
+        root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+      }
+      lspconfig.tsserver.setup {
+        root_dir = lspconfig.util.root_pattern("package.json"),
+        single_file_support = false,
+      }
       lspconfig.svelte.setup {}
       lspconfig.lua_ls.setup {
         settings = {
@@ -47,6 +53,15 @@ return {
           client.server_capabilities.semanticTokensProvider = nil
         end,
       })
+      cmp.setup {
+        preselect = 'item',
+        completion = {
+          completeopt = 'menu,menuone,noinsert'
+        },
+        mapping = cmp.mapping.preset.insert({
+          ['<CR>'] = cmp.mapping.confirm({ select = false }),
+        }),
+      }
     end
   }
 }
