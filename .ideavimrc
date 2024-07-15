@@ -1,0 +1,30 @@
+" Liempo's IdeaVimrc
+set encoding=utf-8
+
+" Enable some emulated plugins
+set surround
+set commentary
+
+""" These settings are from original vimrc
+
+" I now hate escape, will replace it by jj
+inoremap jj <Esc>
+cnoremap jj <Esc>
+
+" Space is the leader key
+let mapleader=" "
+
+" Shorter tabs because tabs is 4 spaces
+set softtabstop=0 tabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+
+" Show numbers
+set number
+
+" Automatically removing all trailing whitespace
+autocmd BufWritePre * %s/\s\+$//e
+
+" Set incremental search
+set incsearch
