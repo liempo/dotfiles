@@ -26,9 +26,11 @@ prompt_context() {
   fi
 }
 
-# Activate virtualenv if .venv exists on cd
-function cd() {
-  builtin cd "$@"
+# Activate zoxide
+eval "$(zoxide init zsh)"
+
+# Activate virtualenv if .venv exists
+function vact() {
   if [[ -z "$VIRTUAL_ENV" ]] ; then
       if [[ -d ./.venv ]] ; then
         source ./.venv/bin/activate
@@ -53,8 +55,11 @@ function tat {
   fi
 }
 
-# Activate zoxide
-eval "$(zoxide init zsh)"
+# automatically attach tmux with zoxide
+function ztat {
+  z $1
+  tat
+}
 
 #  Custom aliases
 alias swift-format-all="find . -name '*.swift' -exec swift-format -i {} \;"
