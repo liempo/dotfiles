@@ -25,8 +25,20 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- Replace word under cursor
 vim.keymap.set("n", "<leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+-- Pasting without replacing the clipboard
+vim.keymap.set("n", "<leader>p", "\"_dP")
+
+-- Copying to system clipboard
+vim.keymap.set("n", "<leader>y", "\"+y")
+vim.keymap.set("v", "<leader>y", "\"+y")
+vim.keymap.set("n", "<leader>Y", "\"+Y")
+
+-- Deleting (using system clipboard)
+vim.keymap.set("n", "<leader>d", "\"_d")
+vim.keymap.set("v", "<leader>d", "\"_d")
+
 -- Indentation
-vim.o.softtabstop = 0
+vim.o.softtabstop = 2
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
@@ -37,6 +49,13 @@ vim.o.wrap = false
 vim.o.number = true
 vim.o.numberwidth = 2
 vim.o.relativenumber = true
+
+-- Search settings
+vim.o.hlsearch = false
+vim.o.incsearch = true
+
+-- Scroll settings
+vim.o.scrolloff = 8
 
 -- Enable mouse support
 vim.o.mouse = 'a'
@@ -53,14 +72,14 @@ vim.o.cinoptions = 'l1'
 -- Lazy Plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
 vim.opt.rtp:prepend(lazypath)
 

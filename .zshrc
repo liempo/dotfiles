@@ -13,6 +13,9 @@ zstyle :omz:plugins:ssh-agent identities id_ed25519_personal id_ed25519_work
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
+# Load fzf
+source <(fzf --zsh)
+
 # Rebind ctrl hjkl
 bindkey '^J' down-line-or-history
 bindkey '^K' up-line-or-history

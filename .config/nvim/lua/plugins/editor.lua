@@ -6,6 +6,10 @@ return {
     end
   },
 
+  { -- Context based comments
+    'JoosepAlviste/nvim-ts-context-commentstring'
+  },
+
   { -- Surround
     'tpope/vim-surround'
   },
@@ -19,6 +23,7 @@ return {
       conform.setup({
         formatters_by_ft = {
           swift = { 'swift_format' },
+          typescript = { 'prettierd' },
         },
         format_on_save = function(_)
           return { timeout_ms = 200, lsp_fallback = true }
@@ -42,10 +47,5 @@ return {
       })
     end
   },
-
-
-  { -- Github Copilot
-    'github/copilot.vim'
-  }
 
 }
