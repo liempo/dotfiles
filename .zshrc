@@ -8,7 +8,7 @@ ZSH_THEME="agnoster"
 plugins=(git ssh-agent)
 
 # Automatically load ssh keys and configure custom git ssh command
-zstyle :omz:plugins:ssh-agent identities id_ed25519_personal id_ed25519_work
+zstyle :omz:plugins:ssh-agent identities id_ed25519_personal id_ed25519_astra id_ed25519_tonic
 
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -66,3 +66,4 @@ function ztat {
 
 #  Custom aliases
 alias swift-format-all="find . -name '*.swift' -exec swift-format -i {} \;"
+alias adb="~/Library/Android/sdk/platform-tools/adb"
